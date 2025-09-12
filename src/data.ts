@@ -2,7 +2,7 @@ import { IKutya } from "./kutya";
 
 export const data: IKutya[] = [
   {
-    id: null,
+    id: 1,
     nev: "Mendy",
     fajta: "keverék",
     nem: false,

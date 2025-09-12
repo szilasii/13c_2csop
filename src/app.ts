@@ -1,4 +1,4 @@
-import { data } from "./data"
-import Kutya from "./kutya"
+import { data } from "./data.js"
+import Kutya from "./kutya.js"
 const ku: Kutya = new Kutya(data[0])
-console.log(ku.dog())
+ku.renderTable("cont",data)

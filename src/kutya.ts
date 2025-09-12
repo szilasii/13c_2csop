@@ -1,20 +1,26 @@
 interface IKutya {
-  id: number | null;
+  readonly id: number | null;
   nev: string;
   fajta: string;
   nem: boolean;
   eletkor: number;
   kepUrl: string | null;
 }
+interface IKutya2 {
+  nev: number;
+  szin: string;
+}
 
- class Kutya implements IKutya {
+type KutyaFull = IKutya & IKutya2;
+type valmai = number | null;
 
-  id: number | null;
-  nev: string;
+class Kutya implements IKutya {
+  id: valmai;
+  nev!: string;
   fajta: string;
-  nem: boolean;
-  eletkor: number;
-  kepUrl: string | null;
+  nem!: boolean;
+  eletkor!: number;
+  kepUrl!: string | null;
 
   constructor(dog: IKutya) {
     this.id = dog.id || null;
@@ -24,7 +30,6 @@ interface IKutya {
     this.eletkor = dog.eletkor;
     this.kepUrl = dog.kepUrl || null;
   }
-   
 
   get Id() {
     return this.id;
@@ -43,11 +48,45 @@ interface IKutya {
     };
     return dog;
   }
+  public dogs(kutyak: IKutya[]): IKutya[] {
+    const dogs: IKutya[] = [];
+    dogs.push(...kutyak);
+    return dogs;
+  }
+
+ public renderTable(containerId: string, data:IKutya[]): void {
+    const container = document.getElementById(containerId);
+    if (!container) {
+      throw new Error("A megadott container nem található!");
+    }
+
+    // Táblázat létrehozása
+    const table = document.createElement("table");
+    table.border = "1";
+
+    // Fejléc generálás (az objektum kulcsai alapján)
+    const headerRow = document.createElement("tr");
+    Object.keys(data[0]).forEach(key => {
+      const th = document.createElement("th");
+      th.innerText = key;
+      headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    // Adatok feltöltése
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+      Object.values(row).forEach(value => {
+        const td = document.createElement("td");
+        td.innerText = String(value);
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+    container.appendChild(table)
+  }
 }
+class Maci {}
 
-class Maci {
-
-}
-
-export default Kutya
-export { Maci, IKutya }
+export default Kutya;
+export { Maci, IKutya };
