@@ -9,7 +9,7 @@ interface IKutya {
 
  class Kutya implements IKutya {
 
-  id: 0;
+  id: number | null;
   nev: string;
   fajta: string;
   nem: boolean;
