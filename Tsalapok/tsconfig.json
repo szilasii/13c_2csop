@@ -7,8 +7,8 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "es2022",
-    "target": "es2022",
+    "module": "es6",
+    "target": "es2017",
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -21,8 +21,8 @@
     //"declarationMap": true,
 
     // Stricter Typechecking Options
-    //"noUncheckedIndexedAccess": true,
-    //"exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
 
     // Style Options
     // "noImplicitReturns": true,
@@ -35,7 +35,7 @@
     // "allowImportingTsExtensions": true,
 
     // Recommended Options
-   // "strict": true,
+    "strict": true,
     //"jsx": "react-jsx",
    // "verbatimModuleSyntax": true,
    // "isolatedModules": true,

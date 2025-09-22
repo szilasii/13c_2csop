@@ -1,6 +1,6 @@
-import { IKutya } from "./kutya";
+import { IKutya } from "./kutya.js";
 
-export const data: IKutya[] = [
+const data: IKutya[] =   [
   {
     id: 1,
     nev: "Mendy",
@@ -74,3 +74,4 @@ export const data: IKutya[] = [
       "https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/brios20245.jpg",
   },
 ];
+export default data
