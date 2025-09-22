@@ -24,10 +24,6 @@ function udv(fn:UdvozletFuggveny) {
 
 
 
-udv( (a) => {
-  console.log(a)
-
-})
 
 
 

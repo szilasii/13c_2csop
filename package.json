@@ -1,0 +1,32 @@
+{
+  "name": "13c_2csop",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "lint": "tslint -c tslint.json src/**/*.ts",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szilasii/13c_2csop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szilasii/13c_2csop/issues"
+  },
+  "homepage": "https://github.com/szilasii/13c_2csop#readme",
+  "description": "",
+  "dependencies": {
+    "tslint": "^5.20.1",
+    "typescript": "^5.9.2"
+  },
+  "files": [
+    "./bin/*",
+    "./lib/*"
+  ],
+  "typings": "./lib/index.d.ts"
+}
