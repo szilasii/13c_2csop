@@ -1,9 +1,10 @@
 import { Router } from "express"
-import { getAllData, root } from "./controller"
+import { getAllData, getDataFromId, root } from "./controller"
 
 const router: Router = Router()
 
 router.get('/',root)
-router.get('/user',getAllData)
+router.get('/dog',getAllData)
+router.get('/dog/:id',getDataFromId)
 
 export default router
