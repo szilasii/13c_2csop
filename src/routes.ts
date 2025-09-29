@@ -1,10 +1,11 @@
 import { Router } from "express"
-import { getAllData, getDataFromId, root } from "./controller"
+import { getAllData, getDataFromId, insertData, root } from "./controller"
 
 const router: Router = Router()
 
 router.get('/',root)
-router.get('/dog',getAllData)
-router.get('/dog/:id',getDataFromId)
+router.get('/dogs',getAllData)
+router.get('/dogs/:id',getDataFromId)
+router.post('/dogs',insertData)
 
 export default router

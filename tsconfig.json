@@ -28,7 +28,7 @@
 		"experimentalDecorators": true,
 		"downlevelIteration": true,
 		"declaration": true,
-
+		"noEmit": true,
 		"pretty": true
 	},
 	"include": [
