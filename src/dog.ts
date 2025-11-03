@@ -1,28 +1,23 @@
 export interface IDog {
-    id: number
+    id: number | undefined | null
     nev: string,
     fajta: string,
     nem: boolean,
-    eletkor: number
-    kepUrl: string
+    eletkor: number | null
+    kepUrl: string | null
 }
 
 export default class Dog implements IDog {
-    id: number
-    nev: string
-    fajta: string
-    nem: boolean
-    eletkor: number
-    kepUrl: string
+    id: number | undefined | null
+    nev: string = ""
+    fajta: string = ""
+    nem: boolean = false
+    eletkor: number | null = null
+    kepUrl: string | null = null
    
-    constructor(dog: IDog ) {
-            this.id = dog.id
-            this.nev = dog.nev || ""
-            this.fajta = dog.fajta
-            this.eletkor = dog.eletkor
-            this.nem = dog.nem
-            this.kepUrl = dog.kepUrl
-            
+    constructor(init?: Partial<Dog>) {
+             
+          Object.assign(this, init as Partial<Dog>)        
    }
   
 } 

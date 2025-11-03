@@ -1,8 +1,6 @@
 
-
-import data from "./data"
 import { Request, Response } from "express"
-import Dog from "./dog"
+import Dog, { IDog } from "./dog"
 
 export function root(_req: Request, res: Response) {
     res.send("Fut a szerver")
@@ -42,14 +40,14 @@ export function insertData(req: Request, res: Response) {
         return
     }
 
-    let dog: Dog = new Dog(req.body)
+    let dog: Dog = new Dog(req.body as Partial<Dog>)
 
     if (dog.nev === "" || dog.fajta === "") {
         res.status(400).send({ error: 400, messege: "Nem küldte el az adatokat megfelelően!" })
         return
     }
 
-    dog.id = Math.max(...data.map(e => e.id)) + 1
+    dog.id = Math.max(...data.map(e => e.id as number)) + 1
     data.push(dog)
     res.status(200).send({ success: "Sikeres adatrögzítés!", data: dog })
 
@@ -93,14 +91,14 @@ export const putData = (req: Request, res: Response) => {
         return
     }
 
-    let dog: Dog = new Dog(req.body)
+    let dog: Dog = new Dog(req.body as IDog)
     if (dog.nev === "" || dog.fajta === "") {
         res.status(400).send({ error: 400, messege: "Nem küldte el az adatokat megfelelően!" })
         return
     }
 
     dog.id = id
-    data[index] = dog
+    data[index] = dog as Dog
     res.status(201).send(data)
 }
 
