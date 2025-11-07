@@ -3,7 +3,7 @@ export interface IDog {
     nev: string,
     fajta: string,
     nem: boolean,
-    eletkor: number | null
+    eletkor: BigInt | null
     kepUrl: string | null
 }
 
@@ -12,7 +12,7 @@ export default class Dog implements IDog {
     nev: string = ""
     fajta: string = ""
     nem: boolean = false
-    eletkor: number | null = null
+    eletkor: BigInt | null = null
     kepUrl: string | null = null
    
     constructor(init?: Partial<Dog>) {
