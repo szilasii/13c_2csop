@@ -24,3 +24,5 @@ INSERT INTO dog  VALUES
 
 
 alter table dog modify column gender INTEGER;
+
+update dog set name = 'macikafgsfg', breed = 'keveréksfg', gender = false, age = 3, picurl = 'https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/mendy20251.jpg' where id = 11;
