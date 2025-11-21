@@ -7,7 +7,7 @@
     "build": "tsc",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "prepublish": "npm run build",
-    "dev": "nodemon --exec ts-node ./src/server.ts"
+    "dev": "nodemon --exec ts-node ./src/app/server.ts"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
     "nodemon": "^3.1.10",
     "tslint": "^5.20.1",
@@ -40,7 +41,10 @@
   "typings": "./lib/index.d.ts",
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.5.2",
+    "cypress": "^15.6.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5"
   }

@@ -23,6 +23,43 @@ INSERT INTO dog  VALUES
 (NULL, 'Briós', 'keverék', 0, 7, 'https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/brios20245.jpg');
 
 
+create table users (id int AUTO_INCREMENT PRIMARY key,
+email varchar(100) not null UNIQUE,
+password varchar(255) not null);
+
+drop table users;
+delete from users;
+
+alter table users AUTO_INCREMENT = 1;
+
+insert into users values (null, "teszt1@gmail.com","titok"),
+(null,"teszt2@gmail.com","jelszo")
+
+
+create trigger insert_user BEFORE insert on users
+for each row set new.password = pwd_encrypt(new.password);
+
+create FUNCTION pwd_encrypt(pwd varchar(100))
+RETURNS VARCHAR(255) DETERMINISTIC
+RETURN SHA2(concat(pwd,'sozas'),256);
+
+drop function login;
+
+create function login(email VARCHAR(100),pwd VARCHAR(100))
+RETURNS integer DETERMINISTIC
+BEGIN
+declare ok integer;
+set ok = 0;
+select id into ok from users where users.email = email and users.password =  pwd_encrypt(pwd);
+RETURN ok;
+End;
+
+select login("teszt2@gmail.com","jelszo");
+
+
+drop Trigger insert_user;
+
+
 alter table dog modify column gender INTEGER;
 
 update dog set name = 'macikafgsfg', breed = 'keveréksfg', gender = false, age = 3, picurl = 'https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/mendy20251.jpg' where id = 11;
