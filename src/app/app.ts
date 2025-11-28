@@ -1,6 +1,7 @@
 import express from "express"
 import router from "../routes/routes"
 import dogRouter from "../dog/routes"
+import userRouter from "../user/routes"
 import cors from "cors"
 import bodyParser from "body-parser"
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json())
 
 app.use('/',router)
 app.use('/', dogRouter)
+app.use('/',userRouter)
 
 export default app
 

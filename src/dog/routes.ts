@@ -1,11 +1,12 @@
 import { Router } from "express"
 import { deleteDataFromId, getAllData, getDataFromId, insertData, patchData, putData } from "./dogController"
+import verifyToken from "../middleware/auth"
 //import verifyToken from "./auth"
 
 const router: Router = Router()
 
 
-router.get('/dogs',  getAllData)
+router.get('/dogs', verifyToken, getAllData)
 router.get('/dogs/:id',getDataFromId)
 router.post('/dogs',insertData)
 router.delete('/dogs/:id',deleteDataFromId)
