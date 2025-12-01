@@ -1,3 +1,6 @@
+create database dog CHARACTER set = 'utf8' COLLATE = 'utf8_hungarian_ci';
+use dog;
+
 create table dog (id int AUTO_INCREMENT PRIMARY KEY,
                  name VARCHAR(100) not null,
                  breed VARCHAR(100) not null,
@@ -22,18 +25,37 @@ INSERT INTO dog  VALUES
 (NULL, 'Csöpi', 'keverék', 1, 8, 'https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/csopi20244.jpg'),
 (NULL, 'Briós', 'keverék', 0, 7, 'https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/brios20245.jpg');
 
-
-create table users (id int AUTO_INCREMENT PRIMARY key,
-email varchar(100) not null UNIQUE,
-password varchar(255) not null);
-
 drop table users;
 delete from users;
-
 alter table users AUTO_INCREMENT = 1;
+create table users (userId int AUTO_INCREMENT PRIMARY key,
+email varchar(100) not null UNIQUE,
+password varchar(255) not null,
+avatar varchar(255) null,
+Foreign Key (avatar) REFERENCES files(fileId) on delete CASCADE);
 
-insert into users values (null, "teszt1@gmail.com","titok"),
-(null,"teszt2@gmail.com","jelszo")
+drop table files;
+delete from files;
+create table files (
+    fileId VARCHAR(255) not null primary key UNIQUE,
+    fileName varchar(255) not null,
+    uploadTime TIMESTAMP default CURRENT_TIMESTAMP(),
+    fileSize INTEGER not null
+)
+
+drop table userFiles;
+create table userFiles (
+    userId integer not null,
+    fileId varchar(255),
+    Foreign Key (fileId) REFERENCES files(fileId) on delete cascade,
+    Foreign Key (userId) REFERENCES users(userId) on delete cascade
+);
+
+
+
+
+insert into users values (null, "teszt1@gmail.com","titok",null),
+(null,"teszt2@gmail.com","jelszo",null)
 
 
 create trigger insert_user BEFORE insert on users
@@ -50,7 +72,7 @@ RETURNS integer DETERMINISTIC
 BEGIN
 declare ok integer;
 set ok = 0;
-select id into ok from users where users.email = email and users.password =  pwd_encrypt(pwd);
+select userId into ok from users where users.email = email and users.password =  pwd_encrypt(pwd);
 RETURN ok;
 End;
 
@@ -60,6 +82,6 @@ select login("teszt2@gmail.com","jelszo");
 drop Trigger insert_user;
 
 
-alter table dog modify column gender INTEGER;
+alter table dog modify column gender TINYINT(1);
 
 update dog set name = 'macikafgsfg', breed = 'keveréksfg', gender = false, age = 3, picurl = 'https://www.tappancs.hu/sites/default/files/styles/full_width_gallery/public/media/mendy20251.jpg' where id = 11;
