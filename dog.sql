@@ -40,8 +40,12 @@ create table files (
     fileId VARCHAR(255) not null primary key UNIQUE,
     fileName varchar(255) not null,
     uploadTime TIMESTAMP default CURRENT_TIMESTAMP(),
+    mimeType varchar(100),
     fileSize INTEGER not null
+
 )
+
+alter table files add mimeType varchar(100);
 
 drop table userFiles;
 create table userFiles (
