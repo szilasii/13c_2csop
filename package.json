@@ -46,7 +46,7 @@
     "@types/multer": "^2.0.0",
     "@types/node": "^24.5.2",
     "bcryptjs": "^3.0.3",
-    "cypress": "^15.6.0",
+    "cypress": "^15.8.1",
     "multer": "^2.0.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
