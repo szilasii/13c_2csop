@@ -4,10 +4,9 @@
   "main": "./lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
     "lint": "tslint -c tslint.json src/**/*.ts",
-    "prepublish": "npm run build",
-    "dev": "nodemon --exec ts-node ./src/app/server.ts"
+    "dev": "nodemon --exec ts-node ./src/app/server.ts",
+    "socket": "nodemon --exec ts-node ./src/ws/server.ts"
   },
   "repository": {
     "type": "git",
@@ -27,12 +26,13 @@
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
     "nodemon": "^3.1.10",
     "tslint": "^5.20.1",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3",
+    "ws": "^8.19.0"
   },
   "files": [
     "./bin/*",
@@ -40,16 +40,17 @@
   ],
   "typings": "./lib/index.d.ts",
   "devDependencies": {
-    "@types/express": "^5.0.3",
+    "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
     "@types/node": "^24.5.2",
+    "@types/ws": "^8.18.1",
     "bcryptjs": "^3.0.3",
     "cypress": "^15.8.1",
     "multer": "^2.0.2",
     "ts-node": "^10.9.2",
-    "tsx": "^4.20.5",
+    "tsx": "^4.21.0",
     "util": "^0.12.5"
   }
 }

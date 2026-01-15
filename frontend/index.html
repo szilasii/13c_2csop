@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        const socket = new WebSocket("ws://localhost:8080");
+        socket.onopen = () => {
+          socket.send("Hali szerver");
+        };
+
+        socket.onmessage = (event) => {
+          console.log("szerver válasz: ", event.data);
+        };
+      
+        function kuld() {
+        
+            socket.send(document.getElementById("uzi").value)    
+        }
+    </script>
+    <input type="text" name="uzi" id="uzi">
+    <input type="button" value="kuld" onclick = 'kuld()'>
+    
+    
+
+  </body>
+</html>
