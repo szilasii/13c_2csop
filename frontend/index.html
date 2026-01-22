@@ -6,23 +6,32 @@
     <title>Document</title>
   </head>
   <body>
+    <ul id="messages"></ul>
     <script>
-        const socket = new WebSocket("ws://localhost:8080");
+        const socket = new WebSocket("ws://10.5.0.4:8080");
         socket.onopen = () => {
           socket.send("Hali szerver");
         };
 
         socket.onmessage = (event) => {
-          console.log("szerver válasz: ", event.data);
+          addMessage(event.data)
         };
       
         function kuld() {
-        
-            socket.send(document.getElementById("uzi").value)    
+          const input = document.getElementById("uzi")
+          socket.send(input.value)
+          input.value= ""    
+        }
+        const list = document.getElementById("messages")
+        function addMessage(text) {
+          const li = document.createElement("li")
+          li.textContent = text
+          list.appendChild(li)
         }
     </script>
+    
     <input type="text" name="uzi" id="uzi">
-    <input type="button" value="kuld" onclick = 'kuld()'>
+    <input type="button" value="kuld" placeholder="Ide írd az üzit!" onclick = 'kuld()'>
     
     
 

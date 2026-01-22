@@ -1,11 +1,21 @@
 import { WebSocketServer } from "ws"
 const wss= new WebSocketServer({port: 8080})
+const clients = new Set()
 
 wss.on("connection", (socket) => {
-    console.log("Ez a szerver")
-    socket.send("Szia kliens! Ez a szerver.")
+    clients.add(socket)
+    socket.send('Csatlakoztal!')
     socket.on("message",(msg)=>{
-        console.log(`A kliens üzenete: ${msg.toString()}`)
-        socket.send(`Ezt az üzit küldted:  ${msg.toString()}`)
+       broadcast(msg.toString())
     })
+    socket.on('close', ()=>{
+        clients.delete(socket)
+    })
+
+
+    const broadcast = (message:any)=> {
+        clients.forEach((client:any)=>{
+            client.send(message)
+        })
+    }
 })
